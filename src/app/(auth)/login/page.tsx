@@ -48,6 +48,12 @@ export default function LoginPage() {
                 Forgot your password?
               </Link>
             </div>
+            
+            <div className="mt-4 text-center bg-blue-50 p-3 rounded-lg">
+              <p className="text-sm text-blue-800">
+                <strong>Note:</strong> Use the pre-filled credentials to sign in and test the app.
+              </p>
+            </div>
           </div>
         </div>
         

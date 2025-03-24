@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/auth/AuthContext';
 import { useRouter } from 'next/navigation';
 
@@ -10,14 +10,22 @@ interface AuthFormProps {
 
 export default function AuthForm({ type }: AuthFormProps) {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(type === 'login' ? 'test@example.com' : '');
+  const [password, setPassword] = useState(type === 'login' ? 'password123' : '');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
   
   const { login, register } = useAuth();
   const router = useRouter();
+
+  // Set default values for login form
+  useEffect(() => {
+    if (type === 'login') {
+      setEmail('test@example.com');
+      setPassword('password123');
+    }
+  }, [type]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useReducer, useState, useEffect } from 'react';
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import type { User, AuthState } from '@/lib/types/auth';
 
 interface AuthContextType extends AuthState {
@@ -78,23 +78,20 @@ const safeLocalStorage = {
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    
     try {
       const savedUser = safeLocalStorage.getItem('user');
       if (savedUser) {
         const parsedUser = JSON.parse(savedUser);
         dispatch({ type: 'AUTH_SUCCESS', payload: parsedUser });
       }
-    } catch (error) {
+    } catch {
       safeLocalStorage.removeItem('user');
     }
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string) => {
     try {
       dispatch({ type: 'AUTH_START' });
       const mockUser: User = {
@@ -107,12 +104,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       safeLocalStorage.setItem('user', JSON.stringify(mockUser));
       
       dispatch({ type: 'AUTH_SUCCESS', payload: mockUser });
-    } catch (error) {
+    } catch {
       dispatch({ type: 'AUTH_ERROR', payload: 'Login failed' });
     }
   };
 
-  const register = async (name: string, email: string, password: string) => {
+  const register = async (name: string, email: string) => {
     try {
       dispatch({ type: 'AUTH_START' });
       const mockUser: User = {
@@ -125,7 +122,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       safeLocalStorage.setItem('user', JSON.stringify(mockUser));
       
       dispatch({ type: 'AUTH_SUCCESS', payload: mockUser });
-    } catch (error) {
+    } catch {
       dispatch({ type: 'AUTH_ERROR', payload: 'Registration failed' });
     }
   };
@@ -137,8 +134,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const contextValue = {
     ...state,
-    login,
-    register,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    login: async (email: string, password: string) => await login(email),
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    register: async (name: string, email: string, password: string) => await register(name, email),
     logout,
   };
 

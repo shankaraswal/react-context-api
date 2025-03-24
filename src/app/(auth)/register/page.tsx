@@ -3,7 +3,7 @@ import AuthForm from '@/components/auth/AuthForm';
 
 export default function RegisterPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-zinc-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen  flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
           <div className="h-24 w-24 bg-red-700 text-white flex items-center justify-center rounded-full text-3xl font-bold shadow-xl border-[6px] border-primary-400">

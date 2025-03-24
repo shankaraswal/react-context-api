@@ -38,7 +38,7 @@ export default function AuthForm({ type }: AuthFormProps) {
       }
       
       router.push('/products');
-    } catch (error) {
+    } catch {
       setFormError('Authentication failed. Please check your credentials.');
     } finally {
       setLoading(false);

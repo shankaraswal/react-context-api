@@ -97,8 +97,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
       const mockUser: User = {
         id: '1',
-        email: email || 'guest@example.com',
-        name: 'Guest User',
+        email: email || 'user@test.com',
+        name: 'Test User',
         createdAt: new Date(),
       };
       
@@ -116,8 +116,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
       const mockUser: User = {
         id: '1',
-        email: email || 'guest@example.com',
-        name: name || 'Guest User',
+        email: email || 'user@test.com',
+        name: name || 'Test User',
         createdAt: new Date(),
       };
       

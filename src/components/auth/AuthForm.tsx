@@ -48,8 +48,11 @@ export default function AuthForm({ type }: AuthFormProps) {
 
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-lg">
-        <div className="text-center">
+      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-[1.5rem] shadow-card">
+        <div className="flex flex-col items-center">
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#800000] text-white font-bold text-2xl mb-6">
+            EC
+          </div>
           <h2 className="text-3xl font-extrabold text-gray-900 mb-2">
             {type === 'login' ? 'Welcome back!' : 'Create your account'}
           </h2>
@@ -80,10 +83,9 @@ export default function AuthForm({ type }: AuthFormProps) {
                   id="name"
                   name="name"
                   type="text"
-                  required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="appearance-none block w-full pl-10 px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                  className="form-input"
                   placeholder="John Doe"
                 />
               </div>
@@ -102,10 +104,9 @@ export default function AuthForm({ type }: AuthFormProps) {
                 id="email"
                 name="email"
                 type="email"
-                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="appearance-none block w-full pl-10 px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                className="form-input"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -123,10 +124,9 @@ export default function AuthForm({ type }: AuthFormProps) {
                 id="password"
                 name="password"
                 type="password"
-                required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="appearance-none block w-full pl-10 px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                className="form-input"
                 placeholder="••••••••"
               />
             </div>
@@ -145,10 +145,9 @@ export default function AuthForm({ type }: AuthFormProps) {
                   id="confirmPassword"
                   name="confirmPassword"
                   type="password"
-                  required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="appearance-none block w-full pl-10 px-4 py-3 rounded-xl bg-gray-50 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200"
+                  className="form-input"
                   placeholder="••••••••"
                 />
               </div>
@@ -159,7 +158,7 @@ export default function AuthForm({ type }: AuthFormProps) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-base font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="btn-primary"
             >
               {loading ? (
                 <div className="flex items-center">

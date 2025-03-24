@@ -44,7 +44,7 @@ export default function ShopLayout({
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center">
               <Link href="/products" className="flex-shrink-0">
-                <div className="h-14 w-14 bg-red-700 text-white flex items-center justify-center rounded-full text-xl font-bold shadow-md border-[3px] border-primary-400">
+                <div className="h-14 w-14 bg-[#800000] text-white flex items-center justify-center rounded-full text-xl font-bold shadow-md">
                   EC
                 </div>
               </Link>
@@ -75,7 +75,7 @@ export default function ShopLayout({
               </div>
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 rounded-lg text-base font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                className="px-4 py-2 rounded-lg text-base font-medium text-white bg-[#800000] hover:bg-[#600000] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#800000] transition-colors duration-200"
               >
                 Logout
               </button>

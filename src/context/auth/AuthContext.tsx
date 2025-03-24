@@ -4,8 +4,8 @@ import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import type { User, AuthState } from '@/lib/types/auth';
 
 interface AuthContextType extends AuthState {
-  login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<void>;
+  login: (email?: string, password?: string) => Promise<void>;
+  register: (name?: string, email?: string, password?: string) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -91,17 +91,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const login = async (email: string, _password: string) => {
+  const login = async (email?: string, _password?: string) => {
     try {
       dispatch({ type: 'AUTH_START' });
       
-      // In a real app, we would use the password for authentication
-      // For this mock implementation, we're not using it
-      
       const mockUser: User = {
         id: '1',
-        email,
-        name: 'Test User',
+        email: email || 'guest@example.com',
+        name: 'Guest User',
         createdAt: new Date(),
       };
       
@@ -113,17 +110,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const register = async (name: string, email: string, _password: string) => {
+  const register = async (name?: string, email?: string, _password?: string) => {
     try {
       dispatch({ type: 'AUTH_START' });
       
-      // In a real app, we would use the password for registration
-      // For this mock implementation, we're not using it
-      
       const mockUser: User = {
         id: '1',
-        email,
-        name,
+        email: email || 'guest@example.com',
+        name: name || 'Guest User',
         createdAt: new Date(),
       };
       

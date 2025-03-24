@@ -6,7 +6,7 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <div className="h-20 w-20 bg-maroon-700 text-white flex items-center justify-center rounded-full text-2xl font-bold shadow-lg border-4 border-primary-300">
+          <div className="h-24 w-24 bg-maroon-700 text-white flex items-center justify-center rounded-full text-3xl font-bold shadow-xl border-[6px] border-primary-400">
             EC
           </div>
         </div>

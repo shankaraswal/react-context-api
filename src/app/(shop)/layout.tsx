@@ -44,7 +44,7 @@ export default function ShopLayout({
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center">
               <Link href="/products" className="flex-shrink-0">
-                <div className="h-12 w-12 bg-maroon-700 text-white flex items-center justify-center rounded-full text-xl font-bold shadow-md border-2 border-primary-300">
+                <div className="h-14 w-14 bg-maroon-700 text-white flex items-center justify-center rounded-full text-xl font-bold shadow-md border-[3px] border-primary-400">
                   EC
                 </div>
               </Link>

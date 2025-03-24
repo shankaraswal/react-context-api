@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '@/context/auth/AuthContext';
 import { useRouter } from 'next/navigation';
 
@@ -11,8 +11,10 @@ export default function AuthLayout({
 }) {
   const { isAuthenticated } = useAuth();
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     // Redirect to products page if user is already authenticated
     if (isAuthenticated) {
       router.push('/products');

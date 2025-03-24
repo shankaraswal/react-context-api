@@ -4,25 +4,25 @@ import "./globals.css";
 import { AuthProvider } from '@/context/auth/AuthContext';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
   subsets: ["latin"],
+  variable: "--font-geist-sans",
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
+  variable: "--font-geist-mono",
 });
 
 export const metadata: Metadata = {
-  title: "WindowShopping",
-  description: "Do Window Shopping if you want to buy or not buy something",
+  title: 'E-Shop | Modern E-commerce',
+  description: 'A modern e-commerce application with Next.js, Tailwind, and TypeScript',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer, useState, useEffect } from 'react';
 import type { User, AuthState } from '@/lib/types/auth';
 
 interface AuthContextType extends AuthState {
@@ -59,6 +59,24 @@ function authReducer(state: AuthState, action: AuthAction): AuthState {
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
+  const [mounted, setMounted] = useState(false);
+
+  // This ensures we only run client-side code after hydration
+  useEffect(() => {
+    setMounted(true);
+    
+    // Check for saved auth state in localStorage on initial load
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      try {
+        const parsedUser = JSON.parse(savedUser);
+        dispatch({ type: 'AUTH_SUCCESS', payload: parsedUser });
+      } catch (error) {
+        // If parsing fails, clear the localStorage
+        localStorage.removeItem('user');
+      }
+    }
+  }, []);
 
   const login = async (email: string, password: string) => {
     try {
@@ -70,6 +88,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         name: 'Test User',
         createdAt: new Date(),
       };
+      
+      // Save user to localStorage
+      localStorage.setItem('user', JSON.stringify(mockUser));
+      
       dispatch({ type: 'AUTH_SUCCESS', payload: mockUser });
     } catch (error) {
       dispatch({ type: 'AUTH_ERROR', payload: 'Login failed' });
@@ -86,6 +108,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         name,
         createdAt: new Date(),
       };
+      
+      // Save user to localStorage
+      localStorage.setItem('user', JSON.stringify(mockUser));
+      
       dispatch({ type: 'AUTH_SUCCESS', payload: mockUser });
     } catch (error) {
       dispatch({ type: 'AUTH_ERROR', payload: 'Registration failed' });
@@ -94,8 +120,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = async () => {
     // TODO: Implement actual logout API call
+    localStorage.removeItem('user');
     dispatch({ type: 'LOGOUT' });
   };
+
+  // Only render the context provider after the component is mounted on the client
+  if (!mounted) {
+    return <>{children}</>;
+  }
 
   return (
     <AuthContext.Provider value={{ ...state, login, register, logout }}>

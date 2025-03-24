@@ -42,15 +42,15 @@ export default function AuthForm({ type }: AuthFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-md mx-auto p-6">
+    <form onSubmit={handleSubmit} className="space-y-6 w-full">
       {error && (
-        <div className="bg-red-50 text-red-500 p-3 rounded-md text-sm">
+        <div className="bg-maroon-50 text-maroon-700 p-4 rounded-xl border border-maroon-200 text-sm">
           {error}
         </div>
       )}
 
       {type === 'register' && (
-        <div>
+        <div className="space-y-2">
           <label
             htmlFor="name"
             className="block text-sm font-medium text-gray-700"
@@ -64,12 +64,13 @@ export default function AuthForm({ type }: AuthFormProps) {
             required
             value={formData.name}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-300 focus:border-primary-400 transition-all duration-200 bg-gray-50 shadow-sm"
+            placeholder="Your full name"
           />
         </div>
       )}
 
-      <div>
+      <div className="space-y-2">
         <label
           htmlFor="email"
           className="block text-sm font-medium text-gray-700"
@@ -83,11 +84,12 @@ export default function AuthForm({ type }: AuthFormProps) {
           required
           value={formData.email}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-300 focus:border-primary-400 transition-all duration-200 bg-gray-50 shadow-sm"
+          placeholder="your.email@example.com"
         />
       </div>
 
-      <div>
+      <div className="space-y-2">
         <label
           htmlFor="password"
           className="block text-sm font-medium text-gray-700"
@@ -101,12 +103,13 @@ export default function AuthForm({ type }: AuthFormProps) {
           required
           value={formData.password}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-300 focus:border-primary-400 transition-all duration-200 bg-gray-50 shadow-sm"
+          placeholder="••••••••"
         />
       </div>
 
       {type === 'register' && (
-        <div>
+        <div className="space-y-2">
           <label
             htmlFor="confirmPassword"
             className="block text-sm font-medium text-gray-700"
@@ -120,18 +123,21 @@ export default function AuthForm({ type }: AuthFormProps) {
             required
             value={formData.confirmPassword}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-300 focus:border-primary-400 transition-all duration-200 bg-gray-50 shadow-sm"
+            placeholder="••••••••"
           />
         </div>
       )}
 
-      <button
-        type="submit"
-        disabled={isLoading}
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
-      >
-        {isLoading ? 'Loading...' : type === 'login' ? 'Sign In' : 'Sign Up'}
-      </button>
+      <div className="pt-2">
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200 font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isLoading ? 'Processing...' : type === 'login' ? 'Sign In' : 'Create Account'}
+        </button>
+      </div>
     </form>
   );
 } 

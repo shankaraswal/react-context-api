@@ -3,11 +3,9 @@ import AuthForm from '@/components/auth/AuthForm';
 
 export default function RegisterPage() {
   return (
-    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-zinc-800">
-          Create your account
-        </h2>
+    <div className="min-h-screen flex flex-col items-center justify-center py-12 sm:px-6 lg:px-8">
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md ">
+        <AuthForm type="register" />
         <p className="mt-2 text-center text-sm text-zinc-600">
           Or{' '}
           <Link
@@ -17,11 +15,6 @@ export default function RegisterPage() {
             sign in to existing account
           </Link>
         </p>
-      </div>
-
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <AuthForm type="register" />
-        
         <div className="mt-6 text-center space-x-2">
           <Link 
             href="#" 

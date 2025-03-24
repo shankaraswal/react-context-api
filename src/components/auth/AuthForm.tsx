@@ -48,53 +48,21 @@ export default function AuthForm({ type }: AuthFormProps) {
 
   return (
     <div className="bg-white py-8 px-6 shadow-card rounded-2xl border border-zinc-100">
-      <form onSubmit={handleSubmit} style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1.5rem'
-      }}>
+      <form onSubmit={handleSubmit} className="space-y-6">
         {formError && (
-          <div style={{
-            backgroundColor: '#fef2f2',
-            color: '#b91c1c',
-            padding: '1rem',
-            borderRadius: '0.75rem',
-            border: '1px solid #fee2e2',
-            fontSize: '0.875rem'
-          }}>
+          <div className="bg-red-50 text-red-700 p-4 rounded-xl border border-red-200 text-sm">
             {formError}
           </div>
         )}
         
         {type === 'register' && (
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.5rem'
-          }}>
-            <label htmlFor="name" style={{
-              display: 'block',
-              fontSize: '0.875rem',
-              fontWeight: '500',
-              color: '#374151'
-            }}>
+          <div className="space-y-2">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
               Full Name
             </label>
-            <div style={{
-              position: 'relative'
-            }}>
-              <div style={{
-                position: 'absolute',
-                top: '50%',
-                left: '0.75rem',
-                transform: 'translateY(-50%)',
-                pointerEvents: 'none'
-              }}>
-                <FiUser style={{
-                  height: '1.25rem',
-                  width: '1.25rem',
-                  color: '#9ca3af'
-                }} />
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FiUser className="h-5 w-5 text-gray-400" />
               </div>
               <input
                 id="name"
@@ -102,52 +70,20 @@ export default function AuthForm({ type }: AuthFormProps) {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                style={{
-                  appearance: 'none',
-                  display: 'block',
-                  width: '100%',
-                  padding: '0.75rem 1rem',
-                  paddingLeft: '2.5rem',
-                  borderRadius: '0.75rem',
-                  backgroundColor: '#f9fafb',
-                  border: '1px solid #d1d5db',
-                  transition: 'all 200ms',
-                  boxSizing: 'border-box'
-                }}
+                className="form-input"
                 placeholder="John Doe"
               />
             </div>
           </div>
         )}
         
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0.5rem'
-        }}>
-          <label htmlFor="email" style={{
-            display: 'block',
-            fontSize: '0.875rem',
-            fontWeight: '500',
-            color: '#374151'
-          }}>
+        <div className="space-y-2">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
             Email Address
           </label>
-          <div style={{
-            position: 'relative'
-          }}>
-            <div style={{
-              position: 'absolute',
-              top: '50%',
-              left: '0.75rem',
-              transform: 'translateY(-50%)',
-              pointerEvents: 'none'
-            }}>
-              <FiMail style={{
-                height: '1.25rem',
-                width: '1.25rem',
-                color: '#9ca3af'
-              }} />
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <FiMail className="h-5 w-5 text-gray-400" />
             </div>
             <input
               id="email"
@@ -155,51 +91,19 @@ export default function AuthForm({ type }: AuthFormProps) {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              style={{
-                appearance: 'none',
-                display: 'block',
-                width: '100%',
-                padding: '0.75rem 1rem',
-                paddingLeft: '2.5rem',
-                borderRadius: '0.75rem',
-                backgroundColor: '#f9fafb',
-                border: '1px solid #d1d5db',
-                transition: 'all 200ms',
-                boxSizing: 'border-box'
-              }}
+              className="form-input"
               placeholder="your.email@example.com"
             />
           </div>
         </div>
 
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0.5rem'
-        }}>
-          <label htmlFor="password" style={{
-            display: 'block',
-            fontSize: '0.875rem',
-            fontWeight: '500',
-            color: '#374151'
-          }}>
+        <div className="space-y-2">
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
             Password
           </label>
-          <div style={{
-            position: 'relative'
-          }}>
-            <div style={{
-              position: 'absolute',
-              top: '50%',
-              left: '0.75rem',
-              transform: 'translateY(-50%)',
-              pointerEvents: 'none'
-            }}>
-              <FiLock style={{
-                height: '1.25rem',
-                width: '1.25rem',
-                color: '#9ca3af'
-              }} />
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <FiLock className="h-5 w-5 text-gray-400" />
             </div>
             <input
               id="password"
@@ -207,52 +111,20 @@ export default function AuthForm({ type }: AuthFormProps) {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{
-                appearance: 'none',
-                display: 'block',
-                width: '100%',
-                padding: '0.75rem 1rem',
-                paddingLeft: '2.5rem',
-                borderRadius: '0.75rem',
-                backgroundColor: '#f9fafb',
-                border: '1px solid #d1d5db',
-                transition: 'all 200ms',
-                boxSizing: 'border-box'
-              }}
+              className="form-input"
               placeholder="••••••••"
             />
           </div>
         </div>
 
         {type === 'register' && (
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.5rem'
-          }}>
-            <label htmlFor="confirmPassword" style={{
-              display: 'block',
-              fontSize: '0.875rem',
-              fontWeight: '500',
-              color: '#374151'
-            }}>
+          <div className="space-y-2">
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
               Confirm Password
             </label>
-            <div style={{
-              position: 'relative'
-            }}>
-              <div style={{
-                position: 'absolute',
-                top: '50%',
-                left: '0.75rem',
-                transform: 'translateY(-50%)',
-                pointerEvents: 'none'
-              }}>
-                <FiLock style={{
-                  height: '1.25rem',
-                  width: '1.25rem',
-                  color: '#9ca3af'
-                }} />
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FiLock className="h-5 w-5 text-gray-400" />
               </div>
               <input
                 id="confirmPassword"
@@ -260,18 +132,7 @@ export default function AuthForm({ type }: AuthFormProps) {
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                style={{
-                  appearance: 'none',
-                  display: 'block',
-                  width: '100%',
-                  padding: '0.75rem 1rem',
-                  paddingLeft: '2.5rem',
-                  borderRadius: '0.75rem',
-                  backgroundColor: '#f9fafb',
-                  border: '1px solid #d1d5db',
-                  transition: 'all 200ms',
-                  boxSizing: 'border-box'
-                }}
+                className="form-input"
                 placeholder="••••••••"
               />
             </div>
@@ -282,36 +143,13 @@ export default function AuthForm({ type }: AuthFormProps) {
           <button
             type="submit"
             disabled={loading}
-            style={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'center',
-              padding: '0.75rem 1rem',
-              borderRadius: '0.75rem',
-              fontWeight: '500',
-              color: 'white',
-              backgroundColor: '#800000',
-              transition: 'all 200ms',
-              boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-              cursor: loading ? 'not-allowed' : 'pointer',
-              opacity: loading ? 0.5 : 1,
-              border: 'none'
-            }}
+            className="btn-primary"
           >
             {loading ? (
-              <div style={{
-                display: 'flex',
-                alignItems: 'center'
-              }}>
-                <svg style={{
-                  animation: 'spin 1s linear infinite',
-                  marginRight: '0.75rem',
-                  height: '1.25rem',
-                  width: '1.25rem',
-                  color: 'white'
-                }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle style={{opacity: 0.25}} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path style={{opacity: 0.75}} fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              <div className="flex items-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
                 Processing...
               </div>

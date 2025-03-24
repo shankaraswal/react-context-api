@@ -9,20 +9,37 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { isAuthenticated } = useAuth();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
 
+  // Setup mounting state
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Handle auth check after component is mounted safely
   useEffect(() => {
-    if (mounted && isAuthenticated) {
-      router.push('/products');
+    if (mounted) {
+      try {
+        const { isAuthenticated } = useAuth();
+        if (isAuthenticated) {
+          router.push('/products');
+        }
+        setAuthChecked(true);
+      } catch (error) {
+        // If useAuth throws an error (e.g., provider not ready), we'll just render children
+        console.log('Auth provider not ready yet');
+        setAuthChecked(true);
+      }
     }
-  }, [isAuthenticated, router, mounted]);
+  }, [mounted, router]);
 
+  // Show a blank screen during initial SSR to prevent hydration issues
+  if (!mounted) {
+    return null;
+  }
+  
   return (
     <div className="relative overflow-hidden">
       {/* Background patterns */}

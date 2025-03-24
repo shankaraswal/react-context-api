@@ -27,10 +27,10 @@ export default function AuthLayout({
     <div className="relative overflow-hidden">
       {/* Background patterns */}
       <div className="absolute inset-0 z-0 opacity-10">
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-maroon-400"></div>
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-red-400"></div>
         <div className="absolute top-1/4 -left-24 w-72 h-72 rounded-full bg-primary-300"></div>
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-primary-400"></div>
-        <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-maroon-500"></div>
+        <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-red-500"></div>
       </div>
       
       {/* Main content */}

@@ -12,58 +12,63 @@ body {
   color: #333;
 }
 
-@layer utilities {
-  .btn-primary {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    padding: 0.75rem 1rem;
-    border-radius: 0.75rem;
-    font-weight: 500;
-    color: white;
-    background-color: #800000;
-    transition-property: all;
-    transition-duration: 200ms;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+/* Button Primary */
+.btn-primary {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  color: white;
+  background-color: #800000;
+  transition: all 200ms;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.btn-primary:hover {
+  background-color: #600000;
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #800000;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Form Input */
+.form-input {
+  appearance: none;
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  padding-left: 2.5rem;
+  border-radius: 0.75rem;
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  transition: all 200ms;
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #800000;
+  border-color: #800000;
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
+}
+
+/* Animation for spinner */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .btn-primary:hover {
-    background-color: #600000;
-  }
-  
-  .btn-primary:focus {
-    outline: none;
-    ring-offset-width: 2px;
-    ring-width: 2px;
-    ring-color: #800000;
-  }
-  
-  .btn-primary:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  .form-input {
-    appearance: none;
-    display: block;
-    width: 100%;
-    padding: 0.75rem 1rem;
-    padding-left: 2.5rem;
-    border-radius: 0.75rem;
-    background-color: rgb(249, 250, 251);
-    border: 1px solid rgb(209, 213, 219);
-    transition-property: color, background-color, border-color;
-    transition-duration: 200ms;
-  }
-  
-  .form-input:focus {
-    outline: none;
-    ring-width: 2px;
-    ring-color: #800000;
-    border-color: #800000;
-  }
-  
-  .form-input::placeholder {
-    color: rgb(156, 163, 175);
+  to {
+    transform: rotate(360deg);
   }
 }

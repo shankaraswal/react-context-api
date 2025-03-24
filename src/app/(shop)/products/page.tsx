@@ -10,27 +10,24 @@ export default function ProductsPage() {
         </p>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {/* Placeholder product cards */}
-          {Array(8)
-            .fill(0)
-            .map((_, i) => (
-              <div 
-                key={i}
-                className="bg-white rounded-2xl overflow-hidden shadow-card border border-gray-100 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
-              >
-                <div className="h-48 bg-gray-200 animate-pulse"></div>
-                <div className="p-4">
-                  <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
-                  <div className="h-4 bg-gray-200 rounded animate-pulse w-3/4"></div>
-                  <div className="mt-4 flex justify-between items-center">
-                    <div className="h-6 bg-gray-200 rounded animate-pulse w-1/4"></div>
-                    <button className="px-4 py-2 bg-primary-500 text-white rounded-lg text-sm">
-                      View
-                    </button>
-                  </div>
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+            <div 
+              key={i}
+              className="bg-white rounded-2xl overflow-hidden shadow-card border border-gray-100 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
+            >
+              <div className="h-48 bg-gray-200"></div>
+              <div className="p-4">
+                <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                <div className="mt-4 flex justify-between items-center">
+                  <div className="h-6 bg-gray-200 rounded w-1/4"></div>
+                  <button className="px-4 py-2 bg-primary-500 text-white rounded-lg text-sm">
+                    View
+                  </button>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
         
         <div className="mt-10 text-center">

@@ -57,31 +57,46 @@ function authReducer(state: AuthState, action: AuthAction): AuthState {
   }
 }
 
+const safeLocalStorage = {
+  getItem: (key: string): string | null => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem(key);
+    }
+    return null;
+  },
+  setItem: (key: string, value: string): void => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(key, value);
+    }
+  },
+  removeItem: (key: string): void => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(key);
+    }
+  }
+};
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
   const [mounted, setMounted] = useState(false);
 
-  // This ensures we only run client-side code after hydration
   useEffect(() => {
     setMounted(true);
     
-    // Check for saved auth state in localStorage on initial load
-    const savedUser = localStorage.getItem('user');
-    if (savedUser) {
-      try {
+    try {
+      const savedUser = safeLocalStorage.getItem('user');
+      if (savedUser) {
         const parsedUser = JSON.parse(savedUser);
         dispatch({ type: 'AUTH_SUCCESS', payload: parsedUser });
-      } catch (error) {
-        // If parsing fails, clear the localStorage
-        localStorage.removeItem('user');
       }
+    } catch (error) {
+      safeLocalStorage.removeItem('user');
     }
   }, []);
 
   const login = async (email: string, password: string) => {
     try {
       dispatch({ type: 'AUTH_START' });
-      // TODO: Implement actual login API call
       const mockUser: User = {
         id: '1',
         email,
@@ -89,8 +104,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         createdAt: new Date(),
       };
       
-      // Save user to localStorage
-      localStorage.setItem('user', JSON.stringify(mockUser));
+      safeLocalStorage.setItem('user', JSON.stringify(mockUser));
       
       dispatch({ type: 'AUTH_SUCCESS', payload: mockUser });
     } catch (error) {
@@ -101,7 +115,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const register = async (name: string, email: string, password: string) => {
     try {
       dispatch({ type: 'AUTH_START' });
-      // TODO: Implement actual registration API call
       const mockUser: User = {
         id: '1',
         email,
@@ -109,8 +122,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         createdAt: new Date(),
       };
       
-      // Save user to localStorage
-      localStorage.setItem('user', JSON.stringify(mockUser));
+      safeLocalStorage.setItem('user', JSON.stringify(mockUser));
       
       dispatch({ type: 'AUTH_SUCCESS', payload: mockUser });
     } catch (error) {
@@ -119,18 +131,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const logout = async () => {
-    // TODO: Implement actual logout API call
-    localStorage.removeItem('user');
+    safeLocalStorage.removeItem('user');
     dispatch({ type: 'LOGOUT' });
   };
 
-  // Only render the context provider after the component is mounted on the client
-  if (!mounted) {
-    return <>{children}</>;
-  }
+  const contextValue = {
+    ...state,
+    login,
+    register,
+    logout,
+  };
 
   return (
-    <AuthContext.Provider value={{ ...state, login, register, logout }}>
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );

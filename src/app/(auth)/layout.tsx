@@ -15,11 +15,13 @@ export default function AuthLayout({
 
   useEffect(() => {
     setMounted(true);
-    // Redirect to products page if user is already authenticated
-    if (isAuthenticated) {
+  }, []);
+
+  useEffect(() => {
+    if (mounted && isAuthenticated) {
       router.push('/products');
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, router, mounted]);
 
   return (
     <div className="relative overflow-hidden">

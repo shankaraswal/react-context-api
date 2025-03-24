@@ -91,9 +91,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const login = async (email: string) => {
+  const login = async (email: string, _password: string) => {
     try {
       dispatch({ type: 'AUTH_START' });
+      
+      // In a real app, we would use the password for authentication
+      // For this mock implementation, we're not using it
+      
       const mockUser: User = {
         id: '1',
         email,
@@ -109,9 +113,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const register = async (name: string, email: string) => {
+  const register = async (name: string, email: string, _password: string) => {
     try {
       dispatch({ type: 'AUTH_START' });
+      
+      // In a real app, we would use the password for registration
+      // For this mock implementation, we're not using it
+      
       const mockUser: User = {
         id: '1',
         email,
@@ -134,10 +142,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const contextValue = {
     ...state,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    login: async (email: string, password: string) => await login(email),
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    register: async (name: string, email: string, password: string) => await register(name, email),
+    login,
+    register,
     logout,
   };
 

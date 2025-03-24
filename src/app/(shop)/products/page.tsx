@@ -21,7 +21,7 @@ export default function ProductsPage() {
                 <div className="h-4 bg-zinc-200 rounded w-3/4"></div>
                 <div className="mt-4 flex justify-between items-center">
                   <div className="h-6 bg-zinc-200 rounded w-1/4"></div>
-                  <button className="px-4 py-2 bg-primary-500 text-white rounded-lg text-sm">
+                  <button className="px-4 py-2 bg-primary-500 text-white rounded-lg text-base">
                     View
                   </button>
                 </div>
@@ -33,7 +33,7 @@ export default function ProductsPage() {
         <div className="mt-10 text-center">
           <Link 
             href="/login" 
-            className="inline-block px-6 py-3 bg-primary-600 text-white rounded-lg font-medium shadow-md hover:bg-primary-700 transition-colors duration-200"
+            className="inline-block px-6 py-3 bg-primary-600 text-white rounded-lg font-medium shadow-md hover:bg-primary-700 transition-colors duration-200 text-base"
           >
             Back to Login
           </Link>

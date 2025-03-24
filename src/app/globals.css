@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+:root {
+  font-size: 16px;
+}
+
+body {
+  font-size: 16px;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 16px;
+  }
+  
+  body {
+    @apply text-base;
+  }
+}

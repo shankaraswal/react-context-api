@@ -2,7 +2,7 @@ name: Deploy Next.js site to Pages
 
 on:
   push:
-    branches: ["develop"] # आपके स्क्रीनशॉट में डिफ़ॉल्ट ब्रांच 'develop' दिख रही है
+    branches: ["develop"]
 
 permissions:
   contents: read
@@ -23,7 +23,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22" # Updated Node version
           cache: 'npm'
 
       - name: Setup Pages

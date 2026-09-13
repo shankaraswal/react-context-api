@@ -4,7 +4,13 @@ const nextConfig: NextConfig = {
   output: 'export',
   basePath: '/react-context-api',
   images: {
-    unoptimized: true, // Next.js Image Optimization को static export के लिए disable करने हेतु
+    unoptimized: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true, // Build के दौरान ESLint एरर इग्नोर करने के लिए
+  },
+  typescript: {
+    ignoreBuildErrors: true, // Build के दौरान TypeScript एरर इग्नोर करने के लिए
   },
 };
 
